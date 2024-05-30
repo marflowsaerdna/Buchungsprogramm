@@ -215,7 +215,15 @@ if (isset($_POST['addExe'])) {
 //			$rSet = dbquery("SELECT email FROM [db]users WHERE email = '".mysqli_real_escape_string($link, $email)."' AND status != 'deleted'");   AW: double email allowed
 //			if (mysqli_num_rows($rSet) > 0) { $msg = $ax['usr_email_exists']; break; }
 			$password = md5($new_pw);
-			$result = dbquery("INSERT INTO [db]users (user_name, firstname, familyname, phone, email, BSP_date, password, language, color, status) VALUES ('".mysqli_real_escape_string($link, $uname)."', '".mysqli_real_escape_string($link, firstname)."', '".mysqli_real_escape_string($link, familyname)."', '".mysqli_real_escape_string($link, phone)."', '".mysqli_real_escape_string($link, email)."', '".DDtoID(mysqli_real_escape_string($link, bsp_date))."', '$password', '$uiLanguage', '$bgrnd', 'active')");
+			$dbcmd = "INSERT INTO [db]users (user_name, firstname, familyname, phone, email, BSP_date, password, language, color, status) VALUES ('".mysqli_real_escape_string($link, $uname);
+			$dbcmd = $dbcmd."', '".mysqli_real_escape_string($link, $firstname);
+			$dbcmd = $dbcmd."', '".mysqli_real_escape_string($link, $familyname);
+			$dbcmd = $dbcmd."', '".mysqli_real_escape_string($link, $phone);
+			$dbcmd = $dbcmd."', '".mysqli_real_escape_string($link, $email);
+			$dbcmd = $dbcmd."', '".DDtoID(mysqli_real_escape_string($link, $bsp_date));
+			$dbcmd = $dbcmd."', '$password', '$uiLanguage', '$bgrnd', 'active')";
+			$result = dbquery($dbcmd);
+//			$result = dbquery("INSERT INTO [db]users (user_name, firstname, familyname, phone, email, BSP_date, password, language, color, status) VALUES ('".mysqli_real_escape_string($link, $uname)."', '".mysqli_real_escape_string($link, firstname)."', '".mysqli_real_escape_string($link, familyname)."', '".mysqli_real_escape_string($link, phone)."', '".mysqli_real_escape_string($link, email)."', '".DDtoID(mysqli_real_escape_string($link, bsp_date))."', '$password', '$uiLanguage', '$bgrnd', 'active')");
 			if (!$result) { $msg = "Database Error: ".$ax['usr_not_added']; break; }
 			$uid = mysqli_insert_id($link);
 			$result = dbquery("UPDATE [db]users SET sedit = $privAdmin, privs = $privPost WHERE user_id = $uid");
@@ -242,7 +250,6 @@ if (isset($_POST['updExe'])) {
 				$result = dbquery("UPDATE [db]users SET password = '$password' WHERE user_id ='$uid'");
 				if (!$result) { $msg = "Database Error: ".$ax['usr_pw_not_updated']; break; }
 			}
-//			$result = dbquery("UPDATE [db]users SET user_name = '".mysqli_real_escape_string($link, $uname)."', email = '".mysqli_real_escape_string($link, $email)."', sedit = $privAdmin, privs = $privPost, language = '$uiLanguage', color = '$bgrnd' WHERE user_id = $uid");
 			$dbcmd = "UPDATE [db]users SET user_name = '".mysqli_real_escape_string($link, $uname);
 			$dbcmd = $dbcmd."', firstname = '".mysqli_real_escape_string($link, $firstname);
 			$dbcmd = $dbcmd."', familyname = '".mysqli_real_escape_string($link, $familyname);
