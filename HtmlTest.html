@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-DE" xml:lang="de-DE">
+<head>
+<title>WVF Schiffe Buchungskalender</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="LuxCal web calendar - a LuxSoft product" />
+<meta name="keywords" content="LuxSoft, LuxCal, LuxCal web calendar" />
+<meta name="author" content="Roel Buining" />
+<meta name="robots" content="nofollow" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="shortcut icon" href="lcal.ico" />
+<link rel="canonical" href="http://www.wvfischbach.de/Buchungssystem/Buchungssystem/" />
+<link rel="alternate" type="application/rss+xml" title="LuxCal RSS Feed" href="http://www.wvfischbach.de/Buchungssystem/Buchungssystem/rssfeed.php" />
+<link rel="stylesheet" type="text/css" href="css/css.php" />
+<script type="text/javascript">
+var dFormat = 1;
+var dSepar = ".";
+var time24 = 1;
+var wStart = 1;
+var dpToday = "Heute";
+var dpClear = "L&ouml;schen";
+var dpMonths = new Array("Januar","Februar","M&auml;rz","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember");
+var dpWkdays = new Array("So","Mo","Di","Mi","Do","Fr","Sa","So");
+var dwTimeSlot = 60;
+</script>
+<script type="text/javascript" src="common/dtpicker.js"></script>
+<script type="text/javascript" src="common/cpicker.js"></script>
+<script type="text/javascript" src="common/poptext.js"></script>
+<script type="text/javascript" src="common/general.js"></script>
+</head>
+<body>
+<div class="topBar">
+<span class="floatL">WVF Schiffe Buchungskalender</span>Mittwoch 1 November 2017<span class="floatR">AndreasW</span>
+</div>
+<div class="navBar">
+<div class="floatL">
+Ansicht:<select title="Ansicht" name="cP" onchange="jumpMenu(this)">
+<option value="index.php?cP=1">Jahr</option>
+<option value="index.php?cP=2">Monat</option>
+<option value="index.php?cP=3">Woche</option>
+<option value="index.php?cP=4">Tag</option>
+<option value="index.php?cP=5">Anstehend</option>
+<option value="index.php?cP=6">&Auml;nderungen</option>
+<option value="index.php?cP=7">Highscore</option>
+</select> 
+<input type="text" name="newD" id="newD" value="01.11.2017" size='7' />
+<button title="Datum ausw&uml;hlen" onclick="dPicker(0,'gotoD','newD'); return false;">&larr;</button>
+</div>
+<div class="floatR">
+<select title="Administrator Funktion ausw&auml;hlen" name="views" onchange="jumpMenu(this)">
+<option value="#">Administration&nbsp;</option>
+<option value="index.php?cP=90">Einstellungen</option>
+<option value="index.php?cP=91" selected="selected">Resourcen</option>
+<option value="index.php?cP=92">Kategorien</option>
+<option value="index.php?cP=99">Einweisungen</option>
+<option value="index.php?cP=93">Benutzer</option>
+<option value="index.php?cP=94">Datenbank</option>
+<option value="index.php?cP=95">iCal Import</option>
+<option value="index.php?cP=96">iCal Export</option>
+<option value="index.php?cP=97">CSV Import</option>
+<option value="index.php?cP=2">Zur&uuml;ck zum Kalender</option>
+</select> 
+<select title="Hilfe" name="help" onchange="jumpMenu(this)">
+<option value="#">Hilfe</option>
+<option value="doc/WvfCal_UserManual.pdf">Buchungsprogramm</option>
+<option value="doc/Nutzungsordnung_aktuell.pdf">Nutzungsordnung</option>
+<option value="doc/EinweisungenBestmaenner.pdf">Zust�ndigkeiten</option>
+<option value="doc/FC8UserManual.pdf">FC8 Handbuch</option>
+<option value="doc/Nutzungsgebuehren.pdf">Preisliste</option>
+<option value="doc/aufbauanleitung3 laserx.pdf">Anleitung Laser</option>
+</select> 
+<button title="Termin hinzuf&uuml;gen" onclick="eventWin('index.php?xP=10');">&nbsp;+&nbsp;</button>
+<button title="send email" onclick="openWin('index.php?xP=98\&amp;from=wolfram.andreas@freenet.de\&amp;to=','600','400');">Feedback @</button>
+<button title="Ausloggen" onclick="location.href='index.php?cP=20\&amp;log_out=y'">Ausloggen</button>
+<button title="" onclick="javascript:window.open('http://weisserhai.net16.net/flyspray/?project=2&do=authenticate&user_name=AndreasW&password=AndreasW&return_to=index.php?project=2&do=roadmap') ">Flyspray</button>
+</div>
+</div>
+<div class="content">
+<br /><h3 class="spaceLL">Ressourcen bearbeiten</h3>
+<br /><p class="noWarningL">&nbsp;</p>
+<div class="scrollBoxAd">
+<table class="fieldBox"><tr><td class="legend">&nbsp;Ressourcenliste&nbsp;</td></tr><tr><td><table class="etable"><thead><tr><th>&nbsp;#&nbsp;</th>
+<th width="120px">Bezeichnung</th>
+<th>&nbsp;Wiederholung</th>
+<th>&nbsp;Besatzung min</th>
+<th>&nbsp;Besatzung max&nbsp;</th>
+<th>&nbsp;&ouml;ffentlich&nbsp;</th><th>Bearbeiten</th><th>L&ouml;schen</tr></thead>
+<tbody><tr><td align=center>0</td><td  align=center style="color: #FFFFFF; background-color: #0000FF;">Weisser Hai</td><td></td>
+<td align=center>2</td><td align=center>6</td>
+<td  align=center>Ja</td>
+<td><span lang="en" title=Bearbeiten><a href=index.php?act=edit&amp;rid=1><img src="images/edit.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<td><span lang="en" title=L&ouml;schen><a href=index.php?delExe=y&amp;rid=1><img src="images/delete.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<tr><td align=center>1</td><td  align=center style="color: #205040; background-color: #FFFFFF;">NochmalNeu</td><td></td>
+<td align=center>1</td><td align=center>10</td>
+<td  align=center>Ja</td>
+<td><span lang="en" title=Bearbeiten><a href=index.php?act=edit&amp;rid=24><img src="images/edit.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<td><span lang="en" title=L&ouml;schen><a href=index.php?delExe=y&amp;rid=24><img src="images/delete.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<tr><td align=center>2</td><td  align=center style="color: #205040; background-color: #FFFFFF;">NochmalNeu</td><td></td>
+<td align=center>1</td><td align=center>10</td>
+<td  align=center>Ja</td>
+<td><span lang="en" title=Bearbeiten><a href=index.php?act=edit&amp;rid=23><img src="images/edit.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<td><span lang="en" title=L&ouml;schen><a href=index.php?delExe=y&amp;rid=23><img src="images/delete.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<tr><td align=center>3</td><td  align=center style="color: #FFFFFF; background-color: #000000;">NeuerName</td><td></td>
+<td align=center>1</td><td align=center>5</td>
+<td  align=center>Ja</td>
+<td><span lang="en" title=Bearbeiten><a href=index.php?act=edit&amp;rid=21><img src="images/edit.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<td><span lang="en" title=L&ouml;schen><a href=index.php?delExe=y&amp;rid=21><img src="images/delete.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<tr><td align=center>4</td><td  align=center style="color: #000000; background-color: #FFCC89;">J/70</td><td></td>
+<td align=center>2</td><td align=center>6</td>
+<td  align=center>Ja</td>
+<td><span lang="en" title=Bearbeiten><a href=index.php?act=edit&amp;rid=19><img src="images/edit.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<td><span lang="en" title=L&ouml;schen><a href=index.php?delExe=y&amp;rid=19><img src="images/delete.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<tr><td align=center>5</td><td  align=center style="color: #FFFFFF; background-color: #205040;">Neptun 26</td><td></td>
+<td align=center>1</td><td align=center>8</td>
+<td  align=center>Ja</td>
+<td><span lang="en" title=Bearbeiten><a href=index.php?act=edit&amp;rid=3><img src="images/edit.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<td><span lang="en" title=L&ouml;schen><a href=index.php?delExe=y&amp;rid=3><img src="images/delete.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<tr><td align=center>6</td><td  align=center style="color: #000000; background-color: #C0E0D0;">Laser</td><td></td>
+<td align=center>1</td><td align=center>1</td>
+<td  align=center>Ja</td>
+<td><span lang="en" title=Bearbeiten><a href=index.php?act=edit&amp;rid=2><img src="images/edit.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<td><span lang="en" title=L&ouml;schen><a href=index.php?delExe=y&amp;rid=2><img src="images/delete.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<tr><td align=center>7</td><td  align=center style="color: #000000; background-color: #FFFF00;">Hexe</td><td></td>
+<td align=center>2</td><td align=center>12</td>
+<td  align=center>Ja</td>
+<td><span lang="en" title=Bearbeiten><a href=index.php?act=edit&amp;rid=18><img src="images/edit.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+<td><span lang="en" title=L&ouml;schen><a href=index.php?delExe=y&amp;rid=18><img src="images/delete.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td>
+</tr><td><td></td><td></td><td></td><td></td><td></td><td><span lang="en" title=Hinzuf&uuml;gen><a href="index.php?act=add&amp;uid=add"><img src="images/plus.png" style="valign: middle ; width: 12px; height: 12px;" alt="back" /></a></span></td></td><td></td></tbody></table></td></tr></table></div>
+﻿</div>
+<div class="endBar noprintx">
+<span class="floatR"><a href="http://www.wvfischbach.de/wp-content/uploads/2017/05/2017-05-Nutzungsordnung-Vereinssegelboote.pdf"><span title="V2.5.3"></span><span class="footLB"></span><span class="footLR">Bitte Kautionsregelung beachten</span></a></span>
+<span  class="floatL"><a href="http://www.wvfischbach.de/Buchungssystem/Buchungssystem/rssfeed.php" title="RSS feeds" target="_blank">RSS</a></span>
+</div></body></html>

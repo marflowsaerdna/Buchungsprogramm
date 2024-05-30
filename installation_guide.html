@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>LuxCal Installation and Configuration Guide</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" href="lcal.ico"/>
+<style type="text/css">
+* {padding:0; margin:0;}
+body {
+	font: 12px arial, helvetica, sans-serif;
+	background: #E0E0E0;
+	color: #2B3856;
+}
+a {text-decoration:none; cursor:pointer;}
+h1 {font-size: 18pt; text-shadow: grey 0.2em 0.3em 0.2em;}
+h3 {margin: 20px 0 10px 0; font-size: 14pt;}
+h4 {margin: 12px 0 6px 0; font-size: 12pt;}
+h5 {margin: 10px 0 0 0; font-size: 10pt;}
+h6 {margin: 10px 0 0 0; font-size: 9pt;}
+ul, ol {margin: 0 20px;}
+.top {background: #F2F2F2;	padding: 10px;}
+.floatR {float: right;}
+.marginLR {margin: 0 40px;}
+.redFlag {color: #DD3300;}
+.navBar {
+	width: 100%;
+	background: #AAAAFF;
+	padding: 0px 10px;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	line-height: 30px;
+	vertical-align: middle;
+}
+.endBar {
+	clear: left;
+	background: #AAAAFF;
+	padding: 0px 10px;
+	text-align: right;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+}
+.content {padding: 10px;}
+</style>
+</head>
+
+<body>
+<div class="top">
+<h4 class="floatR">a LuxSoft product</h4>
+<h1>LuxCal Event calendar</h1>
+</div>
+<table class="navBar"><tr><td width="40%" align="right">&nbsp;</td></tr></table>
+<div class="content marginLR">
+
+<center><h3>Installation Guide</h3></center>
+<!--
+<br />
+<center><h4 class="redFlag">THIS IS NOT THE LATEST VERSION OF LUXCAL</h4></center>
+<center><h4 class="redFlag">FOR THE LATEST VERSION GO TO <a href="http://www.luxsoft.eu">LUXSOFT</a></h4></center>
+<br />
+-->
+<h4>Table of Content</h4>
+<ol style="margin:0 40px" type="1">
+<li><p><a href="#1">Installation of Updates</a></p></li>
+<li><p><a href="#2">New Installation</a></p></li>
+<ul>
+<li><p><a href="#2a">Requirements</a></p></li>
+<li><p><a href="#2b">Installation Steps</a></p></li>
+</ul>
+<li><p><a href="#3">Calendar Configuration</a></p></li>
+<ul>
+<li><p><a href="#3a">Configuration Variables</a></p></li>
+<li><p><a href="#3b">Installing Automatic Periodical Functions</a></p></li>
+<li><p><a href="#3c">Installing a New Language</a></p></li>
+</ul>
+<li><p><a href="#4">Managing the Calendar</a></p></li>
+<ul>
+<li><p><a href="#4a">Event Categories</a></p></li>
+<li><p><a href="#4b">Calendar Users</a></p></li>
+<li><p><a href="#4c">Calendar Database</a></p></li>
+<li><p><a href="#4d">CSV File Import</a></p></li>
+<li><p><a href="#4e">iCal File Import/Export</a></p></li>
+<li><p><a href="#4f">Calendar Configuration Settings</a></p></li>
+</ul>
+<li><p><a href="#5">Embedding the Calendar in an Existing Web Page</a></p></li>
+<ul>
+<li><p><a href="#5a">Link to the Calendar</a></p></li>
+<li><p><a href="#5b">Embed a Mini Calendar</a></p></li>
+<li><p><a href="#5c">Embed the Full Calendar</a></p></li>
+<li><p><a href="#5d">Embed One Specific Calendar View Without Navigation Bar</a></p></li>
+</ul>
+</ol>
+<br /><br />
+
+<a name="1"></a><h4>1. Installation of Updates</h4>
+<p>To upgrade to a new version of the LuxCal Event Calendar follow the 
+instructions in the file &quot;<kbd>release_notes_luxcal_xxx.html</kbd>&quot; 
+(where xxx indicates the release).</p>
+
+<a name="2"></a><h4>2. New Installation</h4>
+
+<a name="2a"></a><h5>Requirements</h5>
+<p>For the installation of the LuxCal Event Calendar on the server of your hosting provider, you will need:</p>
+<ul>
+<li><p>A web accessible directory on a web server to install the LuxCal files.</p></li>
+<li><p>The web server should be able to run php-scripts (PHP 5.1 or higher).</p></li>
+<li><p>A MySQL database on the web server to store the LuxCal Event Calendar data.</p></li>
+</ul>
+
+<a name="2b"></a><h5>Installation Steps</h5>
+<p>To install the LuxCal Event Calendar on the server of your hosting provider, follow the next steps:</p> 
+<ul>
+<li><p>Create a MySQL database on the server to store the LuxCal calendar data. Ask your hosting provider 
+		if they provide a tool for you to do this.</p>
+		<p>For later use, remember the name of the database server (host name), the database name and the 
+		username and password to access the database.</p></li>
+<li><p>Uncompress the downloaded LuxCal zip-file in a temporary location and upload all files and 
+		directories to a Web accessible directory on the server where you wish to install LuxCal.</p></li>
+<li><p>Point your Web browser to the directory of the LuxCal installation; it should redirect you to the
+		&quot;install.php&quot; script and show the Installation page.</p></li>
+<li><p>On the Installation page enter the database details and the administrator name, e-mail address 
+		and password and click &quot;Install.&quot;  The script will generate the necessary tables in the 
+		database and display the content for your configuration file. Using a <strong>plain</strong> text 
+		editor, cut and paste this content into a new file and save it as &quot;config.php&quot;. Note: 
+		do not use Word or Wordpad, but use for instance Notepad or Notepad++.</p></li>
+<li><p>Upload the file <kbd>config.php</kbd>; to the root directory of your LuxCal installation.</p></li>
+<li><p>Launch the calendar by browsing to the calendar's URL to ensure the calendar displays properly.</p></li>
+<li><p>After successful installation, delete the file <kbd>install.php</kbd> from the server.</p></li>
+<li><p>Point your Web browser to the directory of the LuxCal installation to start the LuxCal calendar.</p></li>
+<li><p>Keep a backup copy of the <kbd>config.php</kbd> file. It contains the parameters for the MySQL 
+		database, the administrator credentials and the calendar configuration settings.</p></li>
+</ul>
+
+<a name="3"></a><h4>3. Calendar Configuration</h4>
+
+<a name="3a"></a><h5>Configuration Variables</h5>
+<p>The calendar configuration variables which are automatically generated during the installation process 
+are stored in the configuration file <kbd>config.php</kbd>. Most settings can be changed at a later stage 
+by the calendar administrator via the Settings page in the drop down menu on the navigation bar at the 
+top right corner of the screen.</p>
+<p>For those interested in technical details: The following are explanations of the PHP variables stored in 
+the configuration file <kbd>config.php</kbd>:</p> 
+<ul>
+<li><p><kbd>$hn</kbd>, <kbd>$db</kbd>, <kbd>$un</kbd> and <kbd>$pw</kbd> correspond to the host name 
+		(e.g. localhost), database name, user name and password of the MySQL database used by LuxCal.</p></li>
+<li><p><kbd>$dbPrefix</kbd> if not blank, this variable is used as a prefix for the database names. 
+		This may be useful if you are short of databases and want to share the database with other 
+		applications, or if you want to use several separate LuxCal calendars. The prefix could for 
+		instance be <kbd>lc1_</kbd> or <kbd>db1_</kbd>, etc.</p></li>
+<li><p><kbd>$calendarTitle</kbd> is the title of the LuxCal calendar that is displayed in the header 
+		of the various calendar views.</p></li>
+<li><p><kbd>$calendarUrl</kbd> is the URL address of the calendar, used for notification purposes.</p></li>
+<li><p><kbd>$calendarEmail</kbd> is the sending e-mail address ("From") in notification emails (reminders).</p></li>
+<li><p><kbd>$timeZone</kbd> specifies your local time zone. See the <a href="http://us3.php.net/manual/en/timezones.php">
+		PHP Supported Timezones</a> for possible values. Setting the correct time zone is important for the 
+		"today" indication in the various views and when the "notification" feature is used.</p></li>
+<li><p><kbd>$chgEmailList</kbd> is a list with destination email addresses for calendar changes sent 
+		by the sendchg.php script. Automatic periodic functions should be installed (see below).</p></li>
+<li><p><kbd>$chgNofDays</kbd> specifies the number of days the sendchg.php script (see previous variable) 
+    should look back for calendar changes. If the automatic periodic functions have been be installed 
+		(see below), this variable could be set to 1 (one day)</p></li>
+<li><p><kbd>$adminCronSum</kbd> specifies whether the calenfdar administrator will receive a summary 
+    report after the periodic functions have been executed. Automatic periodic functions should be 
+		installed (see below) and emailing cron job output should be enabled on the server.</p></li>
+<li><p><kbd>$oneStepEdit</kbd> if enabled: clicking an event will directly open the Edit Event window; 
+		if disabled: clicking an event will always first open the Event Details window where the Edit 
+		button has to be selected to open the Edit Event window.</p></li>
+<li><p><kbd>$userMenu</kbd> specifies whether the user filter is displayed in the  
+		calendar's options panel. Possible values: 0 = don't display the user filter menu, 1 = display the 
+		user filter menu.</p></li>
+<li><p><kbd>$catMenu</kbd> specifies whether the event resource filter is displayed in the  
+		calendar's options panel. Possible values: 0 = don't display the resource filter menu, 1 = display 
+		the resource filter menu.</p></li>
+<li><p><kbd>$langMenu</kbd> specifies whether the calendar users are allowed to select their preferred 
+		user interface language the calendar's options panel. Possible values: 0 = 
+		don't display the language selection menu, 1 = display the language selection menu.</p></li>
+<li><p><kbd>$defaultView</kbd> indicates the initial calendar view to be displayed when the LuxCal 
+		Event Calendar is started. Possible values/views: 1 = Year, 2 = Month, 3 = Week, 4 = Day (today) and 
+		5 = Upcoming events.</p></li>
+<li><p><kbd>$language</kbd> specifies the default user interface language. Only installed languages can 
+		be specified.</p></li>
+<li><p><kbd>$selfReg</kbd> indicates whether users can register themselves via the Log-in page. 
+		Possible values: 0 = self-registration disabled, 1 = self-registration enabled.</p></li>
+<li><p><kbd>$selfRegPrivs</kbd> specifies the access rights for self-registered users. Possible 
+		values: 1 = view, 2 = post self (post events and edit own events), 3 = post all (post events and 
+		edit own and other user's events).</p></li>
+<li><p><kbd>$maxNoLogin</kbd> indicates after how many 'no-login' days a user account should be 
+		automatically deleted. 
+		Possible values: 0 = never delete a user account, 1 - 365 = number of days.</p></li>
+<li><p><kbd>$miniCalPost</kbd> indicates whether events can be added, edited and deleted via the mini 
+		calendar without opening the full calendar. 
+		Possible values: 0 = posting of events disabled, 1 = posting of events enabled. The default value 
+		is 0.</p></li>
+<li><p><kbd>$yearStart</kbd> specifies the start month in year view (1-12 or 0, 0: current month)'.</p></li>
+<li><p><kbd>$colsToShow</kbd> specifies the number of months to show per row in year view'.</p></li>
+<li><p><kbd>$rowsToShow</kbd> specifies the number of 4-months rows to show in year view. The default 
+		value is 4.</p></li>
+<li><p><kbd>$weeksToShow</kbd> specifies the number of weeks to show in month view. The value 0 is an 
+		exception and will result in the display of just one single full month. The default value is 10.</p></li>
+<li><p><kbd>$upcomingDays</kbd> specifies the number of days to look ahead in upcoming view. The default 
+		value is 7 (one week).</p></li>
+<li><p><kbd>$startHour</kbd> specifies the start of the full time block on the day and week views. The 
+		default value is 6 (corresponding to 6:00am). This parameter helps to avoid wasting space for the 
+		nightly hours, where normally no, or very few, events are planned.</p></li>
+<li><p><kbd>$dwTimeSlot</kbd> specifies the time slot size (in minutes) in day/week view. Together 
+		with the $startHour (see above) this value determines the number of rows in day/week view.</p></li>
+<li><p><kbd>$dwTsHeight</kbd> specifies the time slot display height (in number of pixels) in day/week 
+		view.</p></li>
+<li><p><kbd>$weekNumber</kbd> specifies whether week numbers should be displayed in the various calendar 
+		views. Possible values: 0 = no week numbers displayed, 1 = week number displayed. The default value 
+		is 1.</p></li>
+<li><p><kbd>$showOwner</kbd> specifies whether the owner of an event should be shown in the hoverbox 
+		in the various views, in the Upcoming Events view, in the Changes view and in email notification 
+		messages.</p></li>
+<li><p><kbd>$showCatName</kbd> specifies whether the event resource name should be displayed for the 
+		events in various views (0: no, 1: yes)</li>
+<li><p><kbd>$showLinkInMV</kbd> specifies whether URL-links, specified in the description field of the 
+		events, should be shown in month view (0: no, 1: yes)</li>
+<li><p><kbd>$eventColor</kbd> specifies whether events should be displayed with the event owner color, 
+		or with the event resource color (0: owner color, 1: resource color)</li>
+<li><p><kbd>$dateFormat</kbd> specifies the format of event dates in the calendar views and input fields. 
+		Possible values/formats: 1 = dd-mm-yyyy, 2 = mm-dd-yyyy, 3 = yyyy-mm-dd.</p></li>
+<li><p><kbd>$dateUSorEU</kbd> specifies the format of dates and times in the calendar headers on the 
+		user interface. 
+		Possible values: 0 = US style user interface, 1 = European (general) style user interface.</p></li>
+<li><p><kbd>$dateSep</kbd> specifies the date separator for dates in the calendar views and input fields. 
+		Possible separators: dot ( . ), slash ( / ) and hyphen ( - ).</p></li>
+<li><p><kbd>$time24</kbd> specifies the format of event times in the calendar views and input fields. 
+		Possible values/formats: 0 = 12-hour am/pm format, 1 = 24-hour format.</p></li>
+<li><p><kbd>$weekStart</kbd> specifies the first day of the week. Possible values: 0 = Sunday, 1 = 
+		Monday.</p></li>
+</ul>
+
+<a name="3b"></a><h5>3.1 Installing Automatic Periodical Functions</h5>
+<p>The following automatic periodical functions are available:</p>
+<ul>
+<li>Email notification messages for event due dates</li>
+<li>Daily email messages with calendar changes</li>
+<li>Automatic deletion of unused user accounts</li>
+</ul>
+<p>To make the automatic periodical functions work, a cron job needs to be created on the server (or 
+on an external server), which executes the file <kbd>lcalcron.php</kbd>, in the root directory of the 
+calendar, daily at approx. 2:00am. For cron job details see the header of the <kbd>lcalcron.php</kbd> 
+file.</p>
+<p>If you are not familiar with cron jobs, ask your hosting provider for help.</p>
+
+<h6>- The Email Notification Feature</h6>
+<p>For events entered in the calendar the user can choose to receive an email reminder (notification) 
+one or several days before the event is due. When chosen, for recurring events (e.g. birthdays) an email 
+notification will be sent to the user the selected number of days before each occurrence of the event. 
+Imagine: never forget to buy flowers for your (girl)friend's birthday anymore!</p>
+<h6>- Receiving Calendar Changes by Email</h6>
+<p>In a multi-user environment it could be useful to be aware of changes being applied to the calendar 
+content, i.e. a list with events added, edited and deleted. Such a list can be called up via the options panel. It is however also possible to have a list with changes 
+automatically sent daily to one or more email addresses.</p>
+<p>Via the Settings page the administrator can specify the number of days to look back for changes and 
+a list with email addresses. If the number of days to look back for changes is set to 0 (zero), no 
+emails with changes will be sent.<p>
+<h6>- Automatic Deletion of Unused User Accounts</h6>
+<p>The account of users who have not logged in during a certain number of days can be automatically 
+deleted. Via the Settings page the administrator can specify the number of 'no login' days after which 
+the user account will be deleted. If the number of 'no login' days is set to 0 (zero), no user accounts 
+will be deleted.</p>
+<p>This function can be particularly useful when users are allowed to self-register (this feature can 
+be switched on/off on the admin's Settings page).</p>
+
+<a name="3c"></a><h5>3.2 Installing a New Language</h5>
+<p>= Note: in the following text the part {language} (including the braces) of the file names represents 
+		the name of the relevant language. =</p>
+<p>A new language for the user interface of the LuxCal calendar can be installed as follows:</p>
+<ul>
+<li>Download and unzip the desired language pack from the LuxSoft site.</li>
+<p>If your language pack is not available:</p>
+<ul>
+<li><p>translate the files <kbd>lang/ai-english.php</kbd> and <kbd>lang/ui-english.php</kbd> (translate 
+		the texts to the right of the => signs) and save the files with the names <kbd>ai-{newlang}.php</kbd> 
+		and <kbd>ui-{newlang}.php</kbd> respectively.<br />
+		Use character encoding <strong>utf-8 without BOM</strong> (see note below).</p></li>
+<li><p>translate the file <kbd>lang/ug-english.php</kbd> (leave the html tags unchanged) and save it with 
+		the name <kbd>ug-{newlang}.php</kbd>.<br />
+		Use character encoding <strong>utf-8 without BOM</strong> (see note below).</p></li>
+</ul>
+<li><p>upload the files <kbd>ai-{newlang}.php</kbd>, <kbd>ui-{newlang}.php</kbd> and 
+		<kbd>ug-{newlang}.php</kbd> to the <kbd>lang/</kbd> directory on the server.</p></li>
+<li><p>on the Settings page (see Calendar Configuration Settings in Section 4 below), change the user  
+		interface language in the Calendar Settings to the new language.</p></li>
+<li><p>if the user interface language menu is displayed in the calendar's options panel, the new installed
+		language will automatically be added to the menu.</p></li>
+</ul>
+<p><b>IMPORTANT NOTE:</b> When using special characters (e.g. accents) in the language files, the ui and 
+		ug files must be saved with character encoding: <kbd>utf-8 without BOM</kbd> (Byte Order Mark). If 
+		your text editor does not support <kbd>utf-8 without BOM</kbd>, you can download and use Notepad++ 
+		(<a href="http://notepad-plus.sourceforge.net/uk/site.htm">Notepad++ on Sourceforge</a>).</p>
+
+<a name="4"></a><h4>4. Managing the Calendar</h4>
+<p>Managing the LuxCal calendar is the responsibility of the calendar administrator, who has all calendar 
+		access rights.</p>
+<p>In order to define users, to set up categories for the calendar, to change configuration settings and 
+		to add events, you must select Log In in the navigation bar at the top right corner of the screen. 
+		Enter the administrator name or email address and password you specified during the installation, 
+		and log in. On the right side of the navigation bar the administrator drop down menu will be 
+		displayed.</p>
+
+<a name="4a"></a><h5>Event Categories</h5>
+<p>A good place to start in managing your calendar is to create a number of categories for your events, each 
+		with its own color. Adding categories with different colors - though not required - will greatly enhance 
+		the views of the calendar. Categories can be for example: meeting, important, holiday, birthday, etc.</p>
+<p>The initial installation has only one resource which is named "no cat". To manage categories, select 
+		Categories in the administrator drop down menu. This takes you to a page with a list of all categories 
+		where you can add new categories and edit or delete current categories.</p>
+<p>When adding / editing events the defined categories can be selected from a pull down list. The order in 
+		which categories are displayed in the pull down list is determined by the Sequence field on the 
+		Categories page.</p>
+<p>The field Repeat can be used to pre-define recurring events. A resource "birthday" or "anniversary" can 
+		be set to repeat every year. If a repeat value is specified, all events defined in this resource will 
+		repeat as specified. The repeat value specified here will overrule possible user 'repeat' settings.</p>
+<p>The checkbox "Public" can be unchecked to exclude certain event categories from being viewed by the 
+		"Public User" and from the RSS feeds.</p>
+<p>The fields Text Color and Background define the colors used to display events in the calendar belonging 
+		to this resource.</p>
+
+<a name="4b"></a><h5>Calendar Users</h5>
+<p>The Users menu in the navigation bar allows the calendar administrator to add and edit users, their 
+		rights for using LuxCal and their user interface language. There are two main areas that can be edited, 
+		i.e. the name / e-mail address / password area and the access rights area. Possible access rights are: 
+		&quot;View&quot;, &quot;Post Own&quot;, &quot;Post All&quot; and &quot;Admin&quot;. It is important to 
+		use a valid email address for each user to be able to receive email notifications of due dates of 
+		events. For each user the default user-interface language can be specified. Whenever a user logs 
+		in, the user-interface language will be set to this language.</p>
+<p>The initial installation has two users defined. One is the Public Access user, who initially has "view" access
+		and the other is the calendar administrator, with the administrator name, email address and password 
+		specified during the installation. The administrator has all access rights.</p>
+<p>Unless the calendar administrator has given &quot;View&quot; access to Public Access users, users must log 
+		in to use the calendar using their name or email address and password. Depending on the type of user, 
+		a user can have different access rights which can be set by the calendar administrator.</p>
+		<p>If the administrator has enabled, on the Settings page, user self-registration, users can register 
+		themselves via the Login page. Self-registered users have the access rights specified by the administrator 
+		on the Settings page.</p>
+
+<a name="4c"></a><h5>Calendar Database</h5>
+<p>The Database menu in the navigation bar allows the calendar administrator to start the following functions:</p>
+<ul>
+<li><p>check and repair the database.</p></li>
+This function checks the 'event' table and the 'dates' table of the database on inconsistencies and, when 
+found, repairs the inconsistencies. The number of inconsistencies found is indicated for each table.
+<li><p>compact database</p></li>
+During normal use of the calendar, when deleting events, the event records are not physically deleted from 
+the database, but are marked as 'deleted'. They can still be used in views and reports; for example in the 
+Changes view. 
+The compact database function permanently removes events from the database which have been marked as 
+'deleted' longer 30 days ago. Thereafter all tables are compressed to free unused space and to reduce 
+database overhead.
+<li><p>backup database</p></li>
+This function creates a backup of the structure and contents of all database tables in the <kbd>files/</kbd> 
+directory. The file name is <kbd>cal-backup-yyyymmdd-hhmmss.sql</kbd> (where 'yyyymmdd' = year, month, and 
+day, and hhmmss = hour, minutes and seconds). The file type is <kbd>.sql</kbd> and the created file can 
+directly be used to re-create the database tables structure and contents, for instance by importing the 
+file in the phpMyAdmin tool which is available on the server of most web hosts.
+</ul>
+
+<a name="4d"></a><h5>CSV File Import</h5>
+<p>CSV (Comma Separated Values) text files with event data can be imported into the LuxCal calendar. This 
+		function can for instance be used to import a CSV file with event data exported by MS Outlook. The dialogue 
+		to import CSV files is opened by selecting CSV Import from the admin drop-down menu in the navigation bar.</p>
+<p>The CSV file contains one line per event and each line contains a number of fields each separated by a comma 
+		(or any other unique character). The order of the fields in each line of the CSV file is: title, venue, 
+		resource id, date, end date, start time, end time and description. The first line of the CSV file is ignored 
+		by the import function and can be used for column descriptions (default in MS Outlook exports).</p>
+<p>Sample CSV files - with different date/time formats - can be found in the <kbd>files/</kbd> directory of the 
+		LuxCal Calendar installation and have the file extension ".csv".</p>
+
+<a name="4e"></a><h5>iCal File Import/Export</h5>
+<p>Events from iCalendar files can be imported into the LuxCal calendar. The content of the iCal file to be 
+		imported must meet the [<u><a href='http://tools.ietf.org/html/rfc5545' target='_blank'>RFC5545 
+		standard</a></u>] of the Internet Engineering Task Force. The LuxCal calendar can also export events 
+		into an iCal file which can be downloaded by the calendar administrator. The dialogue to import/export 
+		iCal files is opened by selecting iCal Import / iCal export from the admin drop-down menu in the 
+		navigation bar.</p> 
+		<p>This function can for instance be used to back up the events of your LuxCal calendar, or to exchange 
+		events with other calendars, e.g. to import public holidays available in iCal format on the internet. 
+		Please note that some LuxCal event fields are not supported in the iCal format (e.g. private event, notify, 
+		email addresses) and consequently are not copied to the iCal file. Some iCal event repetition rules are not 
+		supported by the LuxCal calendar; these events will be displayed and earmarked as such, but will not be 
+		added to the calendar.</p>
+	<p>Various sample iCal files can be found in the <kbd>files/</kbd> directory of the LuxCal Calendar 
+		installation and have the file extension ".ics".</p>
+
+<a name="4f"></a><h5>Calendar Configuration Settings</h5>
+<p>The Settings page in the administrator's menu on the navigation bar can be used to easily change the 
+		calendar's configuration variables which are stored in the <kbd>config.php</kbd> file (see section 3 above). 
+		These variables, for instance, define the calendar title, the time zone, the language file to be used for 
+		the user interface, the default initial view when the calendar is started, the number of weeks/months 
+		displayed in the various views, the date and time format, etc.</p>
+<p>IMPORTANT: Currently the TimeZone is set to &quot;Europe/Amsterdam&quot;. If you are in a different time 
+		zone, change the TimeZone to your local time zone. See the 
+		<a href="http://us3.php.net/manual/en/timezones.php">PHP Supported Timezones</a> for possible  values.</p>
+
+<a name="5"></a><h4>5. Embedding the Calendar in an Existing Web Page</h4>
+<p>To use the calendar on an other web site, the following possibilities are available:</p>
+<ul>
+<li><p>link to the calendar's URL, which will open the calendar in a new page.</p></li>
+<li><p>embed a mini calendar, which can be used to view events and - if enabled by the admin - add, edit and delete events.</p></li>
+<li><p>embed the full calendar with navigation bar, which the visitor can use to change the options the calendar.</p></li>
+<li><p>embed one specific calendar view without navigation bar. The visitor cannot change the options of the calendar</p></li>
+</ul>
+<a name="5a"></a><h5>Link to the Calendar</h5>
+<p>To link to the LuxCal calendar in an existing web page and open it in a new window, the following HTML 
+code can be used:
+<br /><br />
+<code>&lt;a href="http://www.mycalsite.xx/luxcal/" target="_blank"&gt;Go To My Calendar&lt;/a&gt;</code>.</p>
+<a name="5b"></a><h5>Embed a Mini Calendar</h5>
+<p>A mini calendar with a (minimum) width of 160px can be embedded in your web site. An example is shown on 
+the LuxCal Demo page of the LuxSoft web site. The mini calendar can be displayed in an inline frame (iframe) 
+using the following HTML code: 
+</p>
+<br />
+<code>
+&lt;iframe class="lcmini" id="lcmini" src="http://www.mysite.xx/luxcal/lcmini.php" width="210px" height="233" scrolling="no"&gt;&lt;/iframe&gt;
+</code>
+<br /><br />
+<p>Via the CSS styles, the class <code>lcmini</code> can be used to position and define the style of the 
+iframe containing the mini calendar.</p>
+<p>The height of the mini calendar varies depending on the month to display (4, 5 or 6 weeks) and therefore 
+the following JavaScript code, which dynamically adjusts the height of the iframe, must be added to the  
+<code>&lt;head&gt;</code> section of the parent web page:</p>
+<br />
+<code>
+&lt;script type="text/javascript"&gt;
+<br />
+function setHeight(newHeight){var plus=(document.all)?8:0; document.getElementById('lcmini').style.height=newHeight+plus+'px';}
+<br />
+&lt;/script&gt;
+</code>
+<br /><br />
+<b>Please note</b>: Automatic adjusting of the iframe height only works if the calendar is located in the 
+same domain as the parent page. If not, the iframe height is set to cope with displaying 6 weeks.
+<br />
+<a name="5c"></a><h5>Embed the Full Calendar</h5>
+<p>To embed the full LuxCal calendar in an existing web page, an inline frame (iframe) can be used. This can  
+for example be done with the following HTML code:
+<br /><br />
+<code>&lt;iframe class="luxCal" src="http://www.mysite.xx/luxcal/?cP=2" width="80%" height="800px"&gt;&lt;/iframe&gt;</code>.
+<br /><br />
+With parameter <kbd>cP</kbd> the default view can be set (e.g. year: <kbd>cP=1</kbd>, month: <kbd>cP=2</kbd>, . . . ,upcoming: 
+<kbd>cP=5</kbd>)<br />
+Via the CSS styles, the class <code>luxCal</code> can be used to position the iframe at the desired location 
+and to set the width and height to fit your needs.</p>
+<a name="5d"></a><h5>Embed One Specific Calendar View without Navigation Bar</h5>
+<p>To embed the LuxCal calendar without navigation bar, the parameter <kbd>hdr=0</kbd> should be added to the 
+URL as follows:
+<br /><br />
+<code>&lt;iframe src="http://www.mysite.xx/luxcal/?hdr=0&cP=2" width="80%" height="800px"&gt;&lt;/iframe&gt;</code>.
+<br /><br />
+</p>
+<p>The visitor will not be able to navigate the calendar and select other views. The following parameters 
+can be added to select the view to display and the user-interface language:</p>
+<ul>
+<li><kbd>cP</kbd> to set the view (e.g. year: <kbd>cP=1</kbd>, month: <kbd>cP=2</kbd>, . . . ,upcoming: 
+<kbd>cP=5</kbd>)</li>
+<li><kbd>cL</kbd> to set the user-interface language (e.g. French: <kbd>cL=Francais</kbd>). The specified 
+language must be present in the <kbd>lang/</kbd> directory)</li>
+</ul>
+<br />
+<p>For example the HTML code to show the Upcoming Events page without navigation bar, in the French language  
+looks as follows:
+<br /><br />
+<code>&lt;iframe src="http://www.mysite.xx/luxcal/?hdr=0&cP=5&cL=Francais" width="80%" height="800px"&gt;&lt;/iframe&gt;</code>.
+</p>
+<br />
+<p>Via the CSS styles the iframe can be positioned at the desired location and the width and height can be 
+set to fit your needs.</p>
+<br />
+<p><b>Important:</b>
+<br />
+The parameter <kbd>hdr=0</kbd> is remembered via the PHP session mechanism; this means that if you access 
+the embedded calendar without navigation bar, then thereafter, when accessing your normal (not-embedded) calendar when your session is still active (max. one hour)
+you will also see no navigation bar. This can be solved by adding the parameter <kbd>hdr=1</kbd> to the URL of 
+your normal calendar.</p>
+</div>
+<br />
+<div class="endBar">
+	<font size='1'>design 2011 - powered by </font><a href="http://www.luxsoft.eu"><font size='2' color='#660066'><b><i>LuxSoft</i></b></font></a>
+</div>
+<br />&nbsp;
+</body>
+</html>

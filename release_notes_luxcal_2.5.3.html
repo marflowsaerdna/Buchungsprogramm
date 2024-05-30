@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>LuxCal Release Notes and Upgrade Instructions</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" href="lcal.ico"/>
+<style type="text/css">
+* { padding:0; margin:0; }
+body {
+	font: 12px arial, helvetica, sans-serif;
+	background: #E0E0E0;
+	color: #2B3856;
+}
+a {text-decoration:none; cursor:pointer;}
+h1 {font-size: 18pt; text-shadow: grey 0.2em 0.3em 0.2em;}
+h3 {margin: 20px 0 10px 0; font-size: 14pt;}
+h4 {margin: 10px 0 0 0; font-size: 12pt;}
+h5 {margin: 10px 0 0 0; font-size: 11pt;}
+h6 {margin: 10px 0; font-size: 10pt;}
+ul, ol {margin: 0 20px;}
+li {margin: 10px 0;}
+.top {background: #F2F2F2;	padding: 10px;}
+.floatR {float: right;}
+.marginLR {margin: 0 40px;}
+.navBar {
+	width: 100%;
+	background: #AAAAFF;
+	padding: 0px 10px;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	line-height: 20px;
+	vertical-align: middle;
+}
+.endBar {
+	clear: left;
+	background: #AAAAFF;
+	padding: 0px 10px;
+	text-align: right;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+}
+.content {padding: 10px;}
+.flag {color: #FF3300;}
+.redFlag {color: #DD3300;}
+</style>
+</head>
+
+<body>
+<div class="top">
+<h4 class="floatR">a LuxSoft product</h4>
+<h1>LuxCal Event calendar</h1>
+</div>
+<table class="navBar"><tr><td width="40%" align="right">&nbsp;</td></tr></table>
+<div class="content marginLR">
+
+<center><h3>Release Notes / Change Log</h3></center>
+<!--
+<br />
+<center><h4 class="redFlag">THIS IS NOT THE LATEST VERSION OF LUXCAL</h4></center>
+<center><h4 class="redFlag">FOR THE LATEST VERSION GO TO <a href="http://www.luxsoft.eu">LUXSOFT</a></h4></center>
+<br />
+-->
+<br /><h4>Installation Instructions - First Time</h4>
+<p>For first-time installations of the LuxCal Event Calendar, follow the 
+instructions in the <kbd>installation_guide.html</kbd>.</p>
+<br />
+<h4>Installation Instructions - Upgrade to a new version</h4>
+<p>To upgrade your LuxCal calendar to a new version follow the Upgrade 
+Instructions below.</p>
+<br />
+<h4>LuxCal 2.5.3 - Original release date: 2011.10.01</h4>
+<h5>Upgrade Instructions</h5>
+<!--<h6 class="redFlag">Note: Upgrading to this LuxCal version will change the 
+structure of the MySQL database. Before going any further be sure to back up 
+your database (via the admin's Database page) and copy the backup file from the 
+<kbd>files/</kbd> directory to a safe place.</h6>-->
+<br />
+<h6>Major Release</h6>
+<p>If you are upgrading from an older version, carefully follow the next steps:</p>
+<ol>
+<li>Make a backup copy of the <kbd>config.php</kbd> file located in the calendar 
+		root on the server of your hosting provider.</li>
+<li>IMPORTANT: If you have tailored the style sheet file, the language files or
+		other files of your current calendar installation, make a backup of the 
+		file(s) concerned and apply the changes to the new file(s) after successful 
+		installation.</li>
+<li>Delete all LuxCal files and folders from the server, <span class="redFlag">
+		<b>EXCEPT THE FILE <kbd>config.php</kbd> IN THE ROOT DIRECTORY</b></span>.</li>
+<li>Download and unzip the latest version of LuxCal (file: <kbd>luxcalxxx.zip</kbd>, 
+		where 'xxx' is the version number) and upload all files and folders to the 
+		calendar root on the server.</li>
+<li>Launch the calendar by browsing to the calendar root on the server.</li>
+<li>If the calendar is displayed successfully, delete the following files from 
+		the calendar root: <b><kbd>install.php</kbd> and <kbd>upgradexxx.php</kbd></b> 
+		(where 'xxx' is the version number)</li>
+<li>The <kbd>config.php</kbd> file in the calendar root on the server has changed. 
+		Save a backup copy.</li>
+</ol>
+			
+<h5>Periodically Started Functions</h5>
+<p>Note: If you periodically start calendar functions using a cron job, then as 
+of LuxCal 2.3 you only need one cron job (running each day at approx. 2 AM) 
+which starts the script <kbd>lcalcron.php</kbd> in the root of the calendar 
+installation. Details on how to define a cron job can be found in the header of 
+the <kbd>lcalcron.php</kbd> file.
+Depending on the configuration settings, the <kbd>lcalcron.php</kbd> script will 
+subsequently start:
+</p><ul>
+<li><kbd>notify.php</kbd> which takes care of sending email reminders</li>
+<li><kbd>sendchg.php</kbd> which takes care of sending calendar changes *)</li>
+<li><kbd>userchk.php</kbd> which checks if user accounts should be deleted *)</li>
+</ul>
+<p>*) if activated on the admin's Settings page</p>
+
+<h5>Language Files</h5>
+<p>If you have translated one of the user interface language files into an other 
+language, you should be aware of the following.</p>
+<p>Each user-interface language is defined in three language files: ({lang} is the 
+name of the language)</p>
+<ul>
+<li>lang/ug-{lang}.php files: User guide for the calendar users</li>
+<li>lang/ui-{lang}.php files: User interface language files</li>
+<li>lamg/ai-{lang}.php files: Admin pages language files</li>
+</ul>
+<p>All language files included in the LuxCal download are up to date with this 
+LuxCal version</p>
+<p>For certain languages we could not translate the new and changed texts. These 
+texts were added / changed in English and still need to be translated.</p>
+
+<h5>Change Log</h5>
+<ul>
+<li><b>Simpler navigation bar, new 'options panel'</b><br />
+All drop down menus in the navigation bar have been replaced by one single button which opens a panel, called Options Panel. Changing the options of the calendar (view selection, filters, and language selection) is done in this new panel.
+Via check boxes the user can . . .<br />
+- change the calendar view (year, month, week, date, upcoming or changes)<br />
+- set a filter based on event owners; multiple users can be selected<br />
+- set a filter based on event categories; multiple categories can be selected<br />
+- change the user interface language<br />
+The display of the filters and language selection in the options panel can be enabled or disabled by the administrator.
+</li>
+<li><b>'Remember me' option during log in</b><br />
+A 'remember me' checkbox has been added to the log in page. When checked, the user will be remembered and will be automatically logged in the next times the calendar is launched. When logging out and in again manually while leaving 'remember me' unchecked, the user will be forgotten directly and will have to log in the next time.
+<b>Clear button on date picker</b>
+On the date picker, used to select dates in forms, the close button has been replaced by a 'clear' button for those date fields which may be blank. The close button is not needed because the date picker closes automatically or can be closed by re-selecting the button that opened the date picker.
+</li>
+<li><b>One- or two-click event editing</b><br />
+Via the admin's Settings page one-step editing can be enabled. If enabled: clicking an event will directly open the Edit Event window. If disabled: clicking an event will always first open the Event Details window where the Edit button has to be selected to open the Edit Event window.
+Note: If the user has no rights to edit an event, the Event Details window will open with the Edit button disabled.
+</li>
+<li><b>Event owner color added</b><br />
+Via the admin's Users page a color can be assigned to each user. On the Settings page the admin can select whether in the various views events are displayed with event resource color or the user (event owner) color.
+</li>
+<li><b>Deleted event categories preserved</b><br />
+Deleted event categories are earmarked "deleted", but not physically deleted. These "deleted" event categories are still available for events created in the past, but are not any longer available for new events.
+</li>
+<li><b>Transparent background for events</b><br />
+If for an event resource no background color has been specified, the background of events in that resource will be transparent and consequently take the color of the underlying calendar (rather than the color white).
+</li>
+<li><b>Admin's Settings page restructured</b><br />
+With the introduction of the new 'options panel', the admin's Settings page has been structured in a more logically way by adding a separate section for the new options panel.
+</li>
+<li><b>New admin setting: "start month in year view"</b><br />
+If a start month has been specified (1 - 12), in Year view the calendar will always start with this month and the year of this first month will only change as of the first day of the same month in the next year.<br />The value 0 has a special meaning: the start month is based on the current date and will fall in the first row of months.
+</li>
+<li><b>Font sizes reviewed and moved to the theme file</b><br />
+In the cascading styles sheet all font sizes have been reviewed and scrutinized. The most important font size groups have been moved to the 'lctheme.php' file. In the 'lctheme.php' file users can now easily tailor the colors and the font sizes of their LuxCal calendar.
+</li>
+<li><b>Various minor improvements an bug fixes</b><br />
+<ul>
+<li>In the Changes and Upcoming views "None." will be displayed when there are no changes of upcoming events to be displayed.</li>
+<li>In the css the styles have been scrutinized and the font sizes have been reviewed, resulting in a simplification of the styles.</li>
+<li>When retrieving events, events list sorted on dates to get the upcoming events in the side bar in the correct order.</li>
+<li>In the Changes view the resource filter and categories.public filter didn't work. Error in database query solved.</li>
+<li>No email reminder should be sent for a repeating or multi-day event on the day of a changed occurrence. The changed occurrence determines if a reminder should be sent.</li>
+<li>Activation of various buttons changes from JavaScript to more robust HTML.</li>
+<li>Problem with the css style of button texts solved. The text of some buttons was not styled by the cascading style sheets.</li>
+<li>In the import iCal script bug in processing event date/time fields solved and problem with half-size erroneous fields solved.</li>
+<li>In certain circumstances the upcoming event list in Upcoming view and in the side bar was not complete. This bug has been solved.</li>
+<li>HTML tags are stripped from the event title, venue and description, to avoid (malicious) use of HTML tags which interfere with the calendar styles.</li>
+<li>Allow for event dates in the previous century.</li>
+<li>Default time zone bug (creating a problem with PHP 5.3 warnings) solved for RSS feeds and downloading iCal files.</li>
+<li>Link to the calendar's RSS feeds added to footer bar.</li>
+<li>A new entry 'Back to calendar' added to the admin drop-down menu, which the admin can use to go back to the calendar view.</li>
+<li>If the calendar database tables are prefixed, the admin's database functions now only operate on the tables starting with the specified prefix.</li>
+<li>When an event is edited by an other user (with "post all" rights), the event owner should remain unchanged, unless the owner is explicitly changed by the admin.</li>
+<li>Various optimizations.</li>
+</ul>
+</li>
+</ul>
+</div>
+<br /><br />
+<div class="endBar">
+	<font size='1'>design 2011 - powered by </font><a href="http://www.luxsoft.eu"><font size='2' color='#660066'><b><i>LuxSoft</i></b></font></a>
+</div>
+<br />&nbsp;
+</body>
+</html>
+

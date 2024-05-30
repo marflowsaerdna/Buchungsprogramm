@@ -1,0 +1,246 @@
+= LuxCal Development Notes =
+============================
+
+To do for this version:
+======================
+None.
+
+To do for next versions:
+=======================
+1. Store calendar settings in the database and scramble the database credentials
+2. Make a printer friendly print button in Month view.
+3. Separate styles sheet for mini-calendar.
+4. Add admin setting to enable/disable "authentication required" for posting via 
+   mini-calendar.
+
+
+Done for version 2.5.0:
+======================
+1.  event.php, eventForm0.php, eventForm1.php, eventForm2.php: Edit the series 
+    or one specific occurrence of a repeating or multi-day event. If just the 
+    occurrence is edited, the original occurrence of the repeating, or multi-day 
+    event is deleted and replaced by the new (edited) event. If just the 
+    occurrence is deleted, the single occurrence will be deleted, whilst the 
+    other occurrences of the repeating or multi-day event stay in place.
+2.  event.php, eventForm1.php, eventForm2.php, ui-{lang}.php: An admin function 
+    has been added: when a user with admin rights creates/edits an event, at the 
+    end of the Add/Edit Event window a drop-down list with registered users is 
+    displayed. From this list the admin can select a user who will become the 
+    owner of the event. And, if Show Owner is enabled, the owner of the event 
+    will be displayed in the Event Details window.
+3.  $exportICS.php, retrieve.php, ai-{lang}.php: On the iCal File Export page it 
+    is now possible to specify the name of the exported file; the file will be 
+    stored in the "files/" directory and can be downloaded into apps on mobile 
+    devices (e.g. a smart phone). Furthermore the event owner has been added to 
+    the export filter, which makes it possible to export event of an individual 
+    owner. The date range selection (events occurring between two dates) has 
+    been improved to cope with repeating and multi-day events (based on the 
+    common/retrieve.php script).
+4.  header.php, footer.php, upcoming.php, changes.php, general.js: Print button 
+    mechanism changed so that class="noprint" is used rather than name="noprint" 
+    Name attribute is not valid for <div>'s, and doesn't work in IE. To save 
+    ink/toner, when printing the background color of the page(s) to print is now 
+    set to 'white', with the exception of the event titles.
+5.  retrieve.php, event.php, year.php, month.php, dw_functions.php, ui-{lang}:
+    When Show Owner is enabled by the admin, the onmouseover popup will show 
+    the owner and the last "editor" (last edited by).
+6.  upgrade250.php, install.php, retrieve.php, event.php, changes.php, notify.
+    php, importCSV.php, importICS.php, exportICS.php, database.php, sendchg.php: 
+    MySQL 'dates' table dropped and fields moved to the 'events' table. Now that 
+    the editing of single occurrences of repeating and multi-day events has been 
+    implemented in an efficient and elegant way (no explosion of repeating and 
+    multi-day events into individual events), there is no need any more to have 
+    separate 'events' and 'dates' tables.
+7.  index.php: code to emulate register_globals OFF added. Security issue.
+8.  header.php: In side bar ";" added to &nbsp without ";" and <input> tag [+] 
+    properly closed with " />".
+9.  dw_functions.php: getElementsByName replaced by getElementsByTagName. Name 
+    is a proprietary element not supported by IE - wtf!. Tagname <span> replaced 
+    by <var> (<var> is unique in LuxCal).
+10. year.php, month.php: <colgroup> replaced by <col> (xhtml validator didn't 
+    like <colgroup>.
+11. css.php: The style for class topText was accidentally removed. Used for the 
+    title in the event window and the help window.
+12. notify.php: between header line and notifications blank line removed. After 
+    notifications blank line added.
+13. retrieve.php, year.php, month.php, upcoming.php, changes.php, header.php, 
+    rssfeed.php, lcmini.php: evtList sorting centralized in retrieve.php script.
+14. css.php: Header problems. "margin:auto" dropped in class floatC to satisfy 
+    IE7!
+15. year.php, css.php: Some unnecessary (double defined) classes removed. Class 
+    textS removed from style sheet.
+16. dw_functions.php, header.php, setting.php, ai-{lang}.php: the admin can now 
+    set the time slot size in day/week view to 10, 15, 20, 30 or 60 minutes and 
+    the time slot display height from 10 - 60 pixels.
+17. event.php: if no space between the URL and the link name, the link name was 
+    not recognized. URL regex changed so that the space is now optional.
+18. year.php, month.php, dw_functions.php, lcmini.php, css.php: different styles 
+    for private events and repeating/multi-day events in onmouseover popup box 
+    moved to the styles sheet.
+19. eventform2: removed private event checkbox in the Edit Event window for  
+    public access users.
+20. eventform2, ui-{lang}.php: in the Edit Event window, every "5th" and "6th" 
+    day/week/month/year added to the repeat function.
+
+As of version 2.5.1:
+====================
+21. settings.php: Hover popup transparent. In popon call class not properly set.
+22. eventform2.php: "\n" displayed at the top of the window.
+23. css.php: When private + repeating, the onmouseover popup didn't show private
+24. event.php: when an edited repeating event doesn't validate, the choice "edit 
+    series or occurrence" is displayed. When selecting "occurrence", the changes 
+    are lost.
+25. lcmini.php: onmouseover popups for repeating events were transparent. Class 
+    "normal" added to repeat events.
+26. month.php, css.php: in month view give month text a background color to make 
+    a new month stand out.
+27. changes.php, sendchg.php: error in "Changed on" date if m_date not present 
+    in db table events.
+28. retrieve.php, sendchg.php: "call-time pass-by-reference" is deprecated and 
+    as of version 5.3.0 PHP generates a warning. Pass-by-reference removed.
+29. lcmini.php: when calling up the full month the current date ("cD") argument 
+    was wrong and caused a problem when displaying exactly one month in Month 
+    view.
+30. lcalcron.php, notify.php, sendchg.php, userchk.php, ai-{lang}.php: Cron job 
+    admin summary - sent when executing lcalcron.php - improved. All user 
+    interface texts moved to the ai-{lang}.php files. Cron job explanation in 
+    lcalcron header improved.
+31. lcalcron.php, settings.php, ai-{lang}.php: Setting added to admin's settings 
+    page to enable/disable the emailing of the admin cron job summary.
+32. event.php, notify.php: Sender / owner removed from email reminder (was not 
+    very useful).
+33. cpicker.js: Added 29 more colors to the color picker used to select text and 
+    background colors for event resources.
+34. event.php, css.php: Added a class for warning messages (in addition to error
+    and confirmation messages) and changed the blocking error "notification date 
+    in past" into a non-blocking warning.
+35. css.php, lctheme.php: the calendar's user-interface color definitions have 
+    been moved from the styles sheet to a new separate file, called lctheme.php. 
+    This makes it easier for users to create their own theme with tailored 
+    colors.
+36. event.php, eventForm0.php, eventForm1.php, eventForm2.php: when the admin 
+    creates an event for someone else or changes the owner of an event, the 
+    reminder email address should be set to the email address of the new owner.
+37. exportICS.php: if on the iCal export page no "occurring between" dates are 
+    specified by the user, the start and end date will be set to -1 year and +1 
+    year respectively. This is to avoid overflow in case of repeating events 
+    without "until" date.
+38. rssfeed.php: time format display error solved and session parameters used by
+    the retrieve function initialized.
+39. {all files}.php: attribute checking and other measures added to solve the 
+    SQL injection vulnerability of the calendar and to avoid malicious use and 
+		unauthorized access to the MySQL database. The text LuxCal followed by the 
+    version number removed from the endbar.
+40. retrieve.php: slashes (introduced by "magic_quotes_gpc") are now stripped 
+    from all text fields at the source. Scripts using $evtList don't need to 
+    strip slashes again.
+41. users.php: the admin rights of the calendar administrator cannot be removed 
+    anymore, neither can users with admin rights remove their own admin rights.
+42. retrieve.php, categories.php, ai-{lang}.php, install.php, upgrade251.php: on 
+    the admin's Categories page for each event resource public view can be 
+    enabled/disabled.
+43. header.php, lcmini.php: to avoid duplicate content for search engines, a 
+    canonical link tag has been added to the html header.
+44. event.php: on the edit event page, the admin's list to set/change the event 
+    owner, also showed deleted users. Fixed.
+		
+As of version 2.5.2:
+====================
+45. event.php: in sanity check "isset" replaced by "!empty" .evDate could be set 
+    but empty, which gave problems when adding an event via the "+".
+46. sendchg.php: the counting of the number of changes for the admin's cron job 
+    report was incorrect.
+47. retrieve.php, changes.php, sendchg.php: column indexes replaced by aliases. 
+    Good programming practice; no change for the user.
+48. index.php, categories.php, users.php, dloader.php: sanity test too strict 
+    for languages with special characters (e.g. accents)
+49. events.php, header.php: for the public user, in the cat menu in the header 
+    and Edit Event window, only show the categories which have been checked as 
+		'public' on the admin's categories page.
+50. sendchg.php: events in change list sorted per change date in the same way as 
+    events are in the calendar views.
+51. install.php: in categories table resource name length changed from 20 chars 
+    (utf-8: 10 chars) to 40 chars (utf-8 20 chars).
+52. exportICS.php: added a test to check if the writing of the export file to 
+    disk was successful. If not successful, an appropriate error message will be 
+    displayed.
+53. database.php: added a test to check if the writing of the backup file to 
+    disk was successful. If not successful, an appropriate error message will be 
+    displayed.
+
+As of version 2.5.3:
+====================
+54. event.php, settings.php: 1-click, or 2-click event editing has become an 
+    admin Setting in the General settings.
+55. dw_functions.php, css.php: simplified the html code for display of the event 
+    title in the event box. One <div>-level and class 'inner' redundant.
+56. css.php, lctheme.php: styles scrutinized, font sizes reviewed and converted 
+    from 'px' to 'em' and the size of certain fonts moved to lctheme.php to make 
+    it easier for the users to change font sizes.
+57. retrieve.php, header.php, sendchg.php, changes.php, month.php, upcoming.php: 
+    if for an event resource no background color has been specified, the back- 
+    ground of events in that resource will be transparent and take the color of 
+    the underlying calendar (rather than the color white).
+58. dtpicker.php, header.php, header_s.php, eventform2.php, changes.php, 
+    importICS.php, exportICS.php: On the date picker the close button has been 
+    replaced by a clear button for those date fields which may be blank. The 
+    close button is not needed because the date picker closes automatically or 
+    can be closed by re-selecting the button that opened it.
+59. header.php, changes.php, upcoming.php, sendchg.php, rssfeed.php: "while ... 
+    each" replaced by "foreach". More transparent, no copy of event data and to 
+    resolve the $evtList reset problem (bug in Upcoming view and side bar).
+60. header.php, upcoming.php, ui-{lang}.php: Display "None." when list is empty.
+61. changes.php: in the Changes view the resource filter and categories.public 
+    filter didn't work. Error in database query solved.
+62. categories.php, users.php, database.php, settings.php, exportICS.php, 
+    importICS.php, importCSV.php: "you are not authorised.." message scrutinised 
+    and moved to ai-{lang} files.
+63. retrieve.php: event list sorted on dates to get the upcoming events in the 
+    side bar in the correct order.
+64. categories.php, users.php, importCSV.php, importICS.php: activation of 
+    various buttons changed from JavaScript (onclick) to more robust html (<a>) 
+    code.
+65. importICS.php, css.php: bug in processing event date/time fields solved and 
+    problem with half-size erroneous fields solved (error class).
+66. header.php, eventform1.php, eventform2.php: input tag with 'type="button"' 
+    replaced by button. No functional changes, but logical and shorter.
+67. event.php: when adding or editing events, html tags are stripped from the 
+    title, venue and description. Html tags could mess up the calendar display.
+68. dloader.php: setting default time zone added to avoid PHP warning messages 
+    which are sent before the headers and interfere with the download.
+69. toolbox.php: allow for event dates in the previous century (e.g. birthdays)
+70. header.php, general.js, css.php and several other php files: individual drop 
+    down menus in the navigation bar replaced by an Options-panel.
+71. index.php, login.php: 'Remember me' checkbox added to log in page. Cookies 
+    combined with sessions to avoid logging in every time.
+72. categories.php, header.php, event.php, exportICS.php, import ICS.php, 
+    importCSV.php: when deleting a resource, it is not physically removed from 
+    the database, but its status is set to 0 (like it's done for users and for 
+    events.
+73. rssfeed.php: problem solved with the missing definition of default time zone 
+    and the resulting PHP 5.3 warning messages.
+74. header.php, css.php: aligning of text in top bar simplified and less prone 
+    to problems in the different browsers.
+75. footer.php: RSS feed link added to the footer bar.
+76. header.php, ui-{lang}.php: An entry "Back to calendar" added at the end of 
+    the admin's drop-down menu.
+77. database.php: If during the calendar installation a prefix was specified for 
+    the database tables the admin's database functions operated on all tables in 
+    the database. This has been fixed so that only tables starting with the 
+    prefix are affected.
+78. settings.php, ai-{lang}.php, install.php, upgradexxx.php: new admin setting 
+    which defines the start month (1 - 12) in year view. The value 0 has a 
+    special meaning: the start month is based on the current date and will fall 
+    in the first row of months.
+79. dtpicker.js: width of time-picker window increased to ensure the four time 
+    columns fit in all browsers.
+79. upgrade.php: test on successful writing of config.php file added.
+80. login.php: on the login screen, the change my data screen and the register 
+    screen measures have been taken to select the right submit button when the 
+    user hits the Enter key.
+81. notify.php: no email reminder should be sent for a repeating or multi-day 
+    event on the day of a changed occurrence. The changed occurrence determines 
+    if a reminder should be sent.
+82. events.php: when an event is edited by an other user (with "post all" 
+    rights), the event owner should remain unchanged, unless the owner is 
+    explicitly changed by the admin.

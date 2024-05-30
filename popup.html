@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>ThaiCreate.Com Tutorial</title>
+</head>
+<body>
+<script language="JavaScript">
+	function updateOpener() {
+		window.opener.document.frmMain.txtVol.value = document.frmMain.txtInput.value;
+		window.close();
+	}
+</script>
+Value :
+<form name="frmMain" method="post" action="">
+	<input type="text" name="txtInput" value="">
+	<input name="Close" type="submit" id="Close"onClick="Javascript:updateOpener()" value="Close">
+</form>
+</body>
+</html>
